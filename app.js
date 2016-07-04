@@ -6,7 +6,7 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
 
-        .state('home',{
+        .state('home', {
             url: '/home',
             templateUrl: 'partial-home.html'
         })
@@ -24,7 +24,36 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             template: 'I could sure use a drink right now.'
         })
 
-        .state('about',{
+        .state('about', {
+            url: '/about',
+            views: {
+                '': {templateUrl: 'partial-about.html'},
 
+                'columnOne@about': {template: 'Look! I am a column!'},
+
+                'columnTwo@about': {
+                    templateUrl: 'table-data.html',
+                    controller: 'mainController'
+                }
+            }
         })
+});
+
+routerApp.controller('mainController', function ($scope) {
+    $scope.message = 'test';
+
+    $scope.scotches = [
+        {
+            name: 'Macallan 12',
+            price: 50
+        },
+        {
+            name: 'Chivas Regal Royal Salute',
+            price: 10000
+        },
+        {
+            name: 'Glenfiddich 1937',
+            price: 20000
+        }
+    ];
 });
